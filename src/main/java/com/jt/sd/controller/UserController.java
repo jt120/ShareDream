@@ -61,7 +61,10 @@ public class UserController extends BaseController {
 			u.setStatus(1);
 			u.setType(3);
 			userService.registerUser(u);
+<<<<<<< HEAD
 			req.setAttribute("msg", "注册成功");
+=======
+>>>>>>> 4113ab57663ce5ce5beef53d284714803e4ca6b1
 			return redirectPath+"user?method=loginInput";
 		}
 	}
