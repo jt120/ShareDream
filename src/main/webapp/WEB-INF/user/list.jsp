@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-<<<<<<< HEAD
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
   <head>
@@ -21,19 +20,6 @@
           <h1>用户管理</h1>
         </div>
         <table>
-=======
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<%@ include file="/inc/global.jsp"%>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-	<jsp:include page="/inc/top.jsp"></jsp:include>
-	<table>
->>>>>>> 4113ab57663ce5ce5beef53d284714803e4ca6b1
 		<tr>
 			<td>ID</td>
 			<td>用户名</td>
@@ -70,7 +56,6 @@
 				</jsp:include></td>
 		</tr>
 	</table>
-<<<<<<< HEAD
       </div>
     </div>
 
@@ -78,7 +63,4 @@
 	
 	<%@ include file="/inc/js.jsp" %>
   </body>
-=======
-</body>
->>>>>>> 4113ab57663ce5ce5beef53d284714803e4ca6b1
 </html>
