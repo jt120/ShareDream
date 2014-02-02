@@ -17,12 +17,12 @@
 
       <!-- Begin page content -->
       <div class="container">
-        <form action="${ctx }/user?method=register" method="post" class="form-signin">
-			<h2 class="form-signin-heading">注册</h2>
-			 <input type="text" name="email" class="form-control" placeholder="Email address" required autofocus>
-	    	<input type="password" name="password" class="form-control" placeholder="Password" required>
+        <form action="${ctx }/login?method=register" method="post" class="form-signin">
+			<h2 class="form-signin-heading">Sign Up</h2>
+			 <input type="text" name="email" value="${email }" class="form-control" placeholder="Email address" required autofocus>
+	    	<input type="password" name="plainPassword" class="form-control" placeholder="Password" required>
 	    	<p style="color:red;">${msg }</p>
-			<button class="btn btn-lg btn-primary btn-block" type="submit">注册</button>
+			<button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
 		</form>
       </div>
     </div>

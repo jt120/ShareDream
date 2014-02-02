@@ -4,7 +4,7 @@
   <head>
   	<%@ include file="/inc/global.jsp" %>
     <%@ include file="/inc/meta.jsp" %>
-    <title>Fixed Top Navbar Example for Bootstrap</title>
+    <title>content</title>
 	<%@ include file="/inc/bootstrap.jsp" %>
 	<script src="${ctx }/resources/ckeditor/ckeditor.js"></script>
   </head>
@@ -23,10 +23,10 @@
 		<c:forEach items="${pComments.datas }" var="comment">
 		<div class="reply">
 			<div class="reply_content">
-			${comment.content }
+			${loginUser.email }&nbsp;&nbsp;&nbsp;${comment.content }
 			</div>
 			<div class="reply_date">
-			发表于${comment.replyDate }
+			${comment.replyDate }
 			</div>
 		<hr/>
 		</div>
@@ -36,7 +36,7 @@
 			<textarea class="ckeditor" cols="20" id="editor1" name="content" rows="10">
 			</textarea>
 			<p></p>
-			<button class="btn btn-lg btn-primary btn-block" type="submit">回复</button>
+			<button class="btn btn-lg btn-primary btn-block" type="submit">reply</button>
 		</form>
 		
         

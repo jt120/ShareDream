@@ -18,12 +18,12 @@
       <!-- Begin page content -->
       <div class="container">
        <form action="dream?method=post" method="post">
-			<input type="text" name="name" class="form-control" placeholder="梦想。。。" required autofocus>
+			<input type="text" name="name" class="form-control" placeholder="Title..." required autofocus>
 			<p>
 			<textarea class="ckeditor" cols="20" id="editor1" name="content" rows="10">
 			</textarea>
 			</p>
-			<button class="btn btn-lg btn-primary btn-block" type="submit">发表</button>
+			<button class="btn btn-lg btn-primary btn-block" type="submit">Post</button>
 		</form>
       </div>
     </div>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.jt.sd.utils.HTMLFilter" %>
 <!DOCTYPE html>
   <head>
   	<%@ include file="/inc/global.jsp" %>
@@ -16,19 +17,17 @@
 
       <!-- Begin page content -->
       <div class="container">
-        <table>
+        <table class="table">
 			<tr>
-				<td>ID</td>
-				<td>名称</td>
-				<td>内容</td>
-				<td>评论数</td>
-				<td>用户ID</td>
+				<th>ID</th>
+				<th>Title</th>
+				<th>Replies</th>
+				<th>User ID</th>
 			</tr>
 			<c:forEach items="${dreams}" var="dream">
 			<tr>
 				<td>${dream.id}</td>
-				<td><a href="dream?method=detail&id=${dream.id }">${dream.name }</a></td>
-				<td>${dream.content }</td>
+				<td><a href="dream?method=detail&id=${dream.id }">${dream["name"]}</a></td>
 				<td>${dream.commentNumber }</td>
 				<td>${dream.user.id }</td>
 			</tr>

@@ -4,7 +4,7 @@
   <head>
   	<%@ include file="/inc/global.jsp" %>
     <%@ include file="/inc/meta.jsp" %>
-    <title>Fixed Top Navbar Example for Bootstrap</title>
+    <title>Login Page</title>
 	<%@ include file="/inc/bootstrap.jsp" %>
 	<link href="${ctx}/resources/css/login.css" rel="stylesheet">
   </head>
@@ -18,14 +18,14 @@
       <!-- Begin page content -->
       <div class="container">
       
-      <form action="${ctx }/user?method=login" method="post" class="form-signin">
-	    <h2 class="form-signin-heading">请登录</h2>
-	    <input type="text" name="email" class="form-control" placeholder="Email address" required autofocus>
+      <form action="${ctx }/login?method=login" method="post" class="form-signin">
+	    <h2 class="form-signin-heading">Please Login</h2>
+	    <input type="text" name="email" value="${email }" class="form-control" placeholder="Email address" required autofocus>
 	    <input type="password" name="password" class="form-control" placeholder="Password" required>
 	    <label class="checkbox">
-	      <input type="checkbox" name="remeberMe" value="remember-me"> 记住我
+	      <input type="checkbox" name="remeberMe" value="remember-me"> remember me
 	    </label>
-	    <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+	    <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
 	  </form>
 	  
       </div>

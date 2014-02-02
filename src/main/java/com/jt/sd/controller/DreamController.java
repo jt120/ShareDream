@@ -11,6 +11,7 @@ import com.jt.sd.entity.Pager;
 import com.jt.sd.entity.User;
 import com.jt.sd.service.CommentService;
 import com.jt.sd.service.DreamService;
+import com.jt.sd.utils.HTMLFilter;
 
 public class DreamController extends BaseController {
 	
@@ -29,6 +30,7 @@ public class DreamController extends BaseController {
 	public String post(HttpServletRequest req, HttpServletResponse resp) {
 		String name = req.getParameter("name");
 		String content = req.getParameter("content");
+		content = HTMLFilter.filter(content);
 		Dream dream = new Dream();
 		dream.setName(name);
 		dream.setContent(content);

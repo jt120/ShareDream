@@ -1,10 +1,23 @@
 package com.jt.sd.controller;
 
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileItemIterator;
+import org.apache.commons.fileupload.FileItemStream;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.fileupload.util.Streams;
 
 import com.jt.sd.entity.Pager;
 import com.jt.sd.entity.User;
@@ -17,25 +30,10 @@ public class UserController extends BaseController {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	UserService userService = new UserService();
 	
-	public String loginInput(HttpServletRequest req, HttpServletResponse resp) {
-		return "user/loginInput.jsp";
-	}
 	
-	public String login(HttpServletRequest req, HttpServletResponse resp) {
-		String email = req.getParameter("email");
-		String password = req.getParameter("password");
-		try {
-			userService.login(email, password);
-			User user = userService.loadByEmail(email);
-			req.getSession().setAttribute("loginUser", user);
-			return redirectPath+"user?method=home";
-		} catch (Exception e) {
-			req.setAttribute("msg", e.getMessage());
-			return "user/loginInput.jsp";
-		}
-	}
 	
 	public String home(HttpServletRequest req, HttpServletResponse resp) {
 		User user = (User)req.getSession().getAttribute("loginUser");
@@ -43,26 +41,6 @@ public class UserController extends BaseController {
 			return "user/home.jsp";
 		} else {
 			return "user/loginInput.jsp";
-		}
-	}
-
-	public String registerInput(HttpServletRequest req, HttpServletResponse resp) {
-		return "user/registerInput.jsp";
-	}
-	
-	public String register(HttpServletRequest req, HttpServletResponse resp) {
-		User u = (User) RequestUtil.setParameters(User.class, req);
-		User user = userService.loadByEmail(u.getEmail());
-		
-		if(user!=null) {
-			req.setAttribute("msg", "用户名已存在");
-			return "user/registerInput.jsp";
-		} else {
-			u.setStatus(1);
-			u.setType(3);
-			userService.registerUser(u);
-			req.setAttribute("msg", "注册成功");
-			return redirectPath+"user?method=loginInput";
 		}
 	}
 	
@@ -80,7 +58,7 @@ public class UserController extends BaseController {
 	
 	public String logout(HttpServletRequest req, HttpServletResponse resp) {
 		req.getSession().invalidate();
-		return "user/loginInput.jsp";
+		return "login/loginInput.jsp";
 	}
 	
 	public String delete(HttpServletRequest req, HttpServletResponse resp) {
@@ -96,5 +74,53 @@ public class UserController extends BaseController {
 		}
 	}
 	
-
+	public String update(HttpServletRequest req, HttpServletResponse resp) {
+		boolean isMutilpart = ServletFileUpload.isMultipartContent(req);
+		InputStream is = null;
+		FileOutputStream fos = null;
+		try {
+			if(isMutilpart) {
+				String upload = getServletContext().getInitParameter("upload");
+				String path = getServletContext().getRealPath(upload);
+				ServletFileUpload servletFileUpload = new ServletFileUpload();
+				FileItemIterator fileItemIterator = servletFileUpload.getItemIterator(req);
+				while(fileItemIterator.hasNext()) {
+					FileItemStream fileItemStream = fileItemIterator.next();
+					is = fileItemStream.openStream();
+					if(fileItemStream.isFormField()) {
+						System.out.println(fileItemStream.getFieldName());
+						System.out.println(Streams.asString(is));
+					} else {
+						String originName = fileItemStream.getName();
+						String name = UUID.randomUUID().toString();
+						path = path + "\\" + name;
+						path = path.replace("\\", "\\\\");
+						File file = new File(path);
+						fos = new FileOutputStream(file);
+						int len = -1;
+						byte[] buff = new byte[1024];
+						while((len=is.read(buff))!=-1) {
+							fos.write(buff, 0, len);
+						}
+					}
+				}
+			}
+		} catch (FileUploadException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(fos!=null) fos.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			try {
+				if(is!=null) is.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return redirectPath+"user?method=home";
+	}
 }

@@ -64,5 +64,9 @@ public class UserService {
 		return userDao.list();
 	}
 	
+	public void update(User user) {
+		userDao.update(user);
+	}
+	
 
 }

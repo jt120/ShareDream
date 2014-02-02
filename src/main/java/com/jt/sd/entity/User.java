@@ -23,7 +23,7 @@ public class User {
 	 * 
 	 */
 	private int status;
-	
+	private Resource resource;
 	
 	private Date registerDate;
 	public int getId() {
@@ -83,6 +83,12 @@ public class User {
 	}
 	public void setStatus(int status) {
 		this.status = status;
+	}
+	public Resource getResource() {
+		return resource;
+	}
+	public void setResource(Resource resource) {
+		this.resource = resource;
 	}
 	@Override
 	public String toString() {

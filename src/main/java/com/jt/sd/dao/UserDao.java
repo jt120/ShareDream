@@ -12,5 +12,5 @@ public interface UserDao {
 	public User load(String email);
 	public Pager<User> list();
 	public User login(String username, String password);
-
+	public void uploadAvatar(User user);
 }

@@ -219,4 +219,26 @@ public class UserDaoImpl implements UserDao {
 		return user;
 	}
 
+	@Override
+	public void uploadAvatar(User user) {
+		Connection con = null;
+		PreparedStatement ps = null;
+		try {
+			con = JDBCUtil.getConnection();
+			
+			String sql = "update t_user set p_id=? " +
+					"where id=?";
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, user.getResource().getId());
+			ps.setInt(2, user.getId());
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.close(ps);
+			JDBCUtil.close(con);
+		}
+		
+	}
+
 }
