@@ -21,7 +21,7 @@ public class DreamDaoImpl implements DreamDao {
 		PreparedStatement ps = null;
 		try {
 			con = JDBCUtil.getConnection();
-			String sql = "insert into t_dream (name,content,uid) values (?,?,?)";
+			String sql = "insert into t_dream (name,content,u_id) values (?,?,?)";
 			ps = con.prepareStatement(sql);
 			ps.setString(1, dream.getName());
 			ps.setString(2, dream.getContent());
@@ -98,7 +98,7 @@ public class DreamDaoImpl implements DreamDao {
 				dream.setName(rs.getString("name"));
 				dream.setContent(rs.getString("content"));
 				User user = new User();
-				user.setId(rs.getInt("uid"));
+				user.setId(rs.getInt("u_id"));
 				dream.setUser(user);
 			}
 		} catch (SQLException e) {
@@ -135,7 +135,7 @@ public class DreamDaoImpl implements DreamDao {
 				dream.setContent(rs.getString("content"));
 				dream.setCommentNumber(rs.getInt("c_num"));
 				User user = new User();
-				user.setId(rs.getInt("uid"));
+				user.setId(rs.getInt("u_id"));
 				dream.setUser(user);
 				dreams.add(dream);
 			}
@@ -182,7 +182,7 @@ public class DreamDaoImpl implements DreamDao {
 				dream.setName(rs.getString("name"));
 				dream.setContent(rs.getString("content"));
 				User user = new User();
-				user.setId(rs.getInt("uid"));
+				user.setId(rs.getInt("u_id"));
 				dream.setUser(user);
 			}
 		} catch (SQLException e) {

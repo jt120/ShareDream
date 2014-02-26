@@ -12,7 +12,7 @@ public class JDBCUtil {
 	private static String password = "root";
 	private static String database = "share_dream";
 	
-	public static Connection getConnection() {
+	public static Connection getMysqlConnection() {
 		Connection con = null;
 		String url = "jdbc:mysql://localhost:3306/"+database+"?zeroDateTimeBehavior=convertToNull";
 		try {
@@ -25,6 +25,22 @@ public class JDBCUtil {
 			e.printStackTrace();
 		}
 		return con;
+	}
+	
+	public static Connection getConnection() {
+		Connection conn= null;
+		String url = "jdbc:h2:~/test";
+		try {
+			Class.forName("org.h2.Driver");
+	        conn = DriverManager.
+	            getConnection(url, "sa", "");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return conn;
 	}
 	
 	public static void close(Connection con) {

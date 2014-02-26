@@ -93,7 +93,7 @@ public class GroupDaoImpl implements GroupDao {
 				group.setId(rs.getInt("id"));
 				group.setName(rs.getString("name"));
 				Dream dream = new Dream();
-				dream.setId(rs.getInt("did"));
+				dream.setId(rs.getInt("d_id"));
 				group.setDream(dream);
 			}
 		} catch (SQLException e) {
@@ -122,7 +122,7 @@ public class GroupDaoImpl implements GroupDao {
 				group.setId(rs.getInt("id"));
 				group.setName(rs.getString("name"));
 				Dream dream = new Dream();
-				dream.setId(rs.getInt("did"));
+				dream.setId(rs.getInt("d_id"));
 				group.setDream(dream);
 				groups.add(group);
 			}

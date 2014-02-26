@@ -6,6 +6,16 @@
     <param-name>upload</param-name> 
     <param-value>upload</param-value> 
 	</context-param>
+	<servlet>
+		<servlet-name>initSql</servlet-name>
+		<servlet-class>com.jt.sd.controller.SqlInit</servlet-class>
+		<load-on-startup>1</load-on-startup>
+		<init-param>
+			<param-name>sql</param-name>
+			<param-value>sql/h2.sql</param-value>
+		</init-param>
+	</servlet>
+	
 	<filter>
 		<filter-name>CharacterFilter</filter-name>
 		<filter-class>com.jt.sd.controller.CharacterFilter</filter-class>
@@ -31,7 +41,7 @@
 		<filter-name>SystemContextFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	
+
 	<servlet>
 		<servlet-name>userServlet</servlet-name>
 		<servlet-class>com.jt.sd.controller.UserController</servlet-class>
